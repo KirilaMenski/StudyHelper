@@ -12,5 +12,8 @@
 	<a href="?lang=be">BE</a>
 	<h1><spring:message code="label.hello"/></h1>
 	
+	<a href="show_all"><spring:message code="href.show_all" /></a>
+	<a href="add_page"><spring:message code="href.add"/></a>
+	
 </body>
 </html>
