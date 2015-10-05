@@ -1,17 +1,29 @@
 package by.ansgar.helper.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="users")
+@Table(name = "user")
 public class User {
-
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="ID")
 	private long id;
+	@Column(name="NAME")
 	private String name;
+	@Column(name="SURNAME")
 	private String surname;
+	@Column(name="PASSWORD")
 	private String password;
+	@Column(name="EMAIL")
 	private String email;
+	@Column(name="phone")
 	private int phone;
 
 	public User() {
