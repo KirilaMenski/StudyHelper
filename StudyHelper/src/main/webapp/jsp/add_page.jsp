@@ -26,5 +26,10 @@
 		<br />
 		<input type="submit" value="<spring:message code="button.add"/>" />
 	</form:form>
+
+	<form action="add_usersFromFile" method="POST" commandName="users">
+		<input type="text" name="file_name" /> <input type="submit"
+			value="<spring:message code="button.add"/>" />
+	</form>
 </body>
 </html>
