@@ -23,6 +23,11 @@ public class UserServiceImpl implements UserService {
 	public void addUser(User user) throws SQLException {
 		userDAO.addUser(user);
 	}
+	
+	@Transactional
+	public void addUserFromFile(String name) throws SQLException{
+		userDAO.addUserFromFile(name);
+	}
 
 	@Transactional
 	public void editUser(User user) throws SQLException {
