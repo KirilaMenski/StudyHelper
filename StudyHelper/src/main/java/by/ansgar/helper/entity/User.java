@@ -24,13 +24,13 @@ public class User {
 	@Column(name="EMAIL")
 	private String email;
 	@Column(name="phone")
-	private int phone;
+	private String phone;
 
 	public User() {
 
 	}
 
-	public User(long id, String name, String surname, String password, String email, int phone) {
+	public User(long id, String name, String surname, String password, String email, String phone) {
 		this.id = id;
 		this.name = name;
 		this.surname = surname;
@@ -79,11 +79,11 @@ public class User {
 		this.email = email;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
