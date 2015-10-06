@@ -8,7 +8,7 @@
 <title>StudyHelper</title>
 </head>
 <body>
-
+	<a href="main">Main</a>
 	<table border="1">
 		<tr>
 			<th>№</th>
@@ -26,6 +26,7 @@
 				<td>${users.password}</td>
 				<td>${users.email}</td>
 				<td>${users.phone}</td>
+				<td><a href="delete_user_${users.id}">Delete</a></td>
 			</tr>
 
 		</c:forEach>
