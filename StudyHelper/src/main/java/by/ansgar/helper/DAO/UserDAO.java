@@ -8,6 +8,8 @@ import by.ansgar.helper.entity.User;
 public interface UserDAO {
 
 	public void addUser(User user) throws SQLException;
+	
+	public void addUserFromFile(String name) throws SQLException;
 
 	public void editUser(User user) throws SQLException;
 
