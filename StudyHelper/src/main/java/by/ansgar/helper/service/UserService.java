@@ -9,6 +9,8 @@ import by.ansgar.helper.entity.User;
 public interface UserService {
 
 	public void addUser(User user) throws SQLException;
+	
+	public void addUserFromFile( String name) throws SQLException;
 
 	public void editUser(User user) throws SQLException;
 
