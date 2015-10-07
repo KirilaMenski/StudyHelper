@@ -25,11 +25,11 @@ public class StudentsDAOImpl implements StudentDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public void addUser(Students students) throws SQLException {
+	public void addStudent(Students students) throws SQLException {
 		currentSession().save(students);
 	}
 
-	public void addUserFromFile(String name) throws SQLException {
+	public void addStudentFromFile(String name) throws SQLException {
 		InputStream is = null;
 		HSSFWorkbook wb = null;
 
@@ -60,21 +60,21 @@ public class StudentsDAOImpl implements StudentDAO {
 			students.setEmail(rowSheet.getCell(3) + "");
 			students.setPhone(rowSheet.getCell(4) + "");
 
-			addUser(students);
+			addStudent(students);
 
 		}
 
 	}
 
-	public void editUser(Students students) throws SQLException {
+	public void editStudent(Students students) throws SQLException {
 		currentSession().update(students);
 	}
 
-	public void deleteUser(Students students) throws SQLException {
+	public void deleteStudent(Students students) throws SQLException {
 		currentSession().delete(students);
 	}
 
-	public Students getUserById(long id) throws SQLException {
+	public Students getStudentById(long id) throws SQLException {
 		Students studentById = null;
 		try {
 			studentById = (Students) currentSession().get(Students.class, id);
