@@ -35,7 +35,7 @@ public class AddPageController {
 	@RequestMapping(value = "/add_student", method = { RequestMethod.GET, RequestMethod.POST })
 	public String addUsers(@ModelAttribute Students students, BindingResult result) {
 		try {
-			studentsService.addUser(students);
+			studentsService.addStudent(students);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -50,23 +50,12 @@ public class AddPageController {
 		System.out.println(name);
 
 		try {
-			studentsService.addUserFromFile(name);
+			studentsService.addStudentFromFile(name);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		return "forward:/show_all";
-	}
-	
-	@RequestMapping(value="/delete_student_{id}", method = { RequestMethod.GET, RequestMethod.POST })
-	public String deleteStudent(@ModelAttribute Students students, @PathVariable long id, BindingResult result){
-		try {
-			students.setId(id);
-			studentsService.deleteUser(students);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return "forward:/show_all";
+		return "show_all";
 	}
 
 	@ModelAttribute("students")
