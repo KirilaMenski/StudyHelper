@@ -8,15 +8,15 @@ import by.ansgar.helper.entity.Students;
 
 public interface StudentService {
 
-	public void addUser(Students students) throws SQLException;
+	public void addStudent(Students students) throws SQLException;
 	
-	public void addUserFromFile( String name) throws SQLException;
+	public void addStudentFromFile( String name) throws SQLException;
 
-	public void editUser(Students students) throws SQLException;
+	public void editStudent(Students students) throws SQLException;
 
-	public void deleteUser(Students students) throws SQLException;
+	public void deleteStudent(Students students) throws SQLException;
 	
-	public Students getUserById(long id) throws SQLException;
+	public Students getStudentById(long id) throws SQLException;
 
 	public List<Students> getAllStudents() throws SQLException;
 
