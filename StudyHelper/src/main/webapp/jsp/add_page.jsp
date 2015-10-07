@@ -8,7 +8,7 @@
 <title>StudyHelper</title>
 </head>
 <body>
-	<form:form action="add_users" method="POST" commandName="users">
+	<form:form action="add_student" method="POST" commandName="students">
 		<spring:message code="label.name" />
 		<form:input type="text" path="name" />
 		<br />
@@ -27,9 +27,15 @@
 		<input type="submit" value="<spring:message code="button.add"/>" />
 	</form:form>
 
-	<form action="add_usersFromFile" method="POST" commandName="users">
-		<input type="text" name="file_name" /> <input type="submit"
-			value="<spring:message code="button.add"/>" />
+	<form action="add_usersFromFile" method="POST" commandName="students">
+		<input type="text" name="file_name" placeholder="D:\folder\file.xsl" />
+		<input type="submit" value="<spring:message code="button.add"/>" />
 	</form>
+	<form action="add_usersFromFile" enctype="multipart/form-data"
+		method="POST">
+		<input type="file" name="file" multiple accept="image/*,image/jpeg" />
+		<input type="submit" value="Send" />
+	</form>
+
 </body>
 </html>

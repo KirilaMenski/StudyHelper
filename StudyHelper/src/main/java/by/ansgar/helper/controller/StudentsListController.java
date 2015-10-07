@@ -9,33 +9,33 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import by.ansgar.helper.entity.User;
-import by.ansgar.helper.service.UserService;
+import by.ansgar.helper.entity.Students;
+import by.ansgar.helper.service.StudentService;
 
 @Controller
-public class UsersListController {
+public class StudentsListController {
 
 	@Autowired
-	private UserService userService;
+	private StudentService studentsService;
 
 	@RequestMapping(value = "/show_all")
 	public ModelAndView showAll() {
 		ModelAndView mav = new ModelAndView();
 		try {
-			List<User> allUsers = userService.getAllUsers();
-			mav.addObject("users", allUsers);
+			List<Students> allStudents = studentsService.getAllStudents();
+			mav.addObject("students", allStudents);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		mav.setViewName("users_list");
+		mav.setViewName("students_list");
 
 		return mav;
 	}
 	
-	@ModelAttribute("users")
-	public User user(){
-		return new User();
+	@ModelAttribute("students")
+	public Students students(){
+		return new Students();
 	}
 
 }

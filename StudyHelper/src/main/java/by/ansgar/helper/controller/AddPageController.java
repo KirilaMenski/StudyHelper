@@ -1,5 +1,6 @@
 package by.ansgar.helper.controller;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import by.ansgar.helper.entity.User;
-import by.ansgar.helper.service.UserService;
+import by.ansgar.helper.entity.Students;
+import by.ansgar.helper.service.StudentService;
 
 @Controller
 public class AddPageController {
 
 	@Autowired
-	private UserService userService;
+	private StudentService studentsService;
 
 	@RequestMapping(value = "/add_page")
 	public ModelAndView doAddPage() {
@@ -31,23 +32,25 @@ public class AddPageController {
 
 	}
 
-	@RequestMapping(value = "/add_users", method = { RequestMethod.GET, RequestMethod.POST })
-	public String addUsers(@ModelAttribute User user, BindingResult result) {
+	@RequestMapping(value = "/add_student", method = { RequestMethod.GET, RequestMethod.POST })
+	public String addUsers(@ModelAttribute Students students, BindingResult result) {
 		try {
-			userService.addUser(user);
+			studentsService.addUser(students);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return "main";
 	}
 
+	//TODO
 	@RequestMapping(value = "/add_usersFromFile", method = { RequestMethod.GET, RequestMethod.POST })
-	public String addUserdFromFile( HttpServletRequest request) {
+	public String addUserdFromFile( HttpServletRequest request) throws IOException {
 
 		String name = request.getParameter("file_name");
 		System.out.println(name);
+
 		try {
-			userService.addUserFromFile(name);
+			studentsService.addUserFromFile(name);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -55,20 +58,22 @@ public class AddPageController {
 		return "forward:/show_all";
 	}
 	
-	@RequestMapping(value="/delete_user_{id}", method = { RequestMethod.GET, RequestMethod.POST })
-	public String deleteUser(@ModelAttribute User user, @PathVariable long id, BindingResult result){
+	@RequestMapping(value="/delete_student_{id}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String deleteStudent(@ModelAttribute Students students, @PathVariable long id, BindingResult result){
 		try {
-			user.setId(id);
-			userService.deleteUser(user);
+			students.setId(id);
+			studentsService.deleteUser(students);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return "forward:/show_all";
 	}
 
-	@ModelAttribute("users")
-	public User user() {
-		return new User();
+	@ModelAttribute("students")
+	public Students students() {
+		return new Students();
 	}
+	
+	
 
 }

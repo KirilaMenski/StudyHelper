@@ -16,17 +16,17 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import by.ansgar.helper.DAO.UserDAO;
-import by.ansgar.helper.entity.User;
+import by.ansgar.helper.DAO.StudentDAO;
+import by.ansgar.helper.entity.Students;
 
 @Repository
-public class UserDAOImpl implements UserDAO {
+public class StudentsDAOImpl implements StudentDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public void addUser(User user) throws SQLException {
-		currentSession().save(user);
+	public void addUser(Students students) throws SQLException {
+		currentSession().save(students);
 	}
 
 	public void addUserFromFile(String name) throws SQLException {
@@ -47,51 +47,51 @@ public class UserDAOImpl implements UserDAO {
 		for (int i = 1; i < sheet.getPhysicalNumberOfRows(); i++) {
 			Row rowSheet = sheet.getRow(i);
 			
-			User user = new User();
+			Students students = new Students();
 			System.out.println(rowSheet.getCell(0));
 			System.out.println(rowSheet.getCell(1));
 			System.out.println(rowSheet.getCell(2));
 			System.out.println(rowSheet.getCell(3));
 			System.out.println(rowSheet.getCell(4));
 
-			user.setName(rowSheet.getCell(0) + "");
-			user.setSurname(rowSheet.getCell(1) + "");
-			user.setPassword(rowSheet.getCell(2) + "");
-			user.setEmail(rowSheet.getCell(3) + "");
-			user.setPhone(rowSheet.getCell(4) + "");
+			students.setName(rowSheet.getCell(0) + "");
+			students.setSurname(rowSheet.getCell(1) + "");
+			students.setPassword(rowSheet.getCell(2) + "");
+			students.setEmail(rowSheet.getCell(3) + "");
+			students.setPhone(rowSheet.getCell(4) + "");
 
-			addUser(user);
+			addUser(students);
 
 		}
 
 	}
 
-	public void editUser(User user) throws SQLException {
-		currentSession().update(user);
+	public void editUser(Students students) throws SQLException {
+		currentSession().update(students);
 	}
 
-	public void deleteUser(User user) throws SQLException {
-		currentSession().delete(user);
+	public void deleteUser(Students students) throws SQLException {
+		currentSession().delete(students);
 	}
 
-	public User getUserById(long id) throws SQLException {
-		User userById = null;
+	public Students getUserById(long id) throws SQLException {
+		Students studentById = null;
 		try {
-			userById = (User) currentSession().get(User.class, id);
+			studentById = (Students) currentSession().get(Students.class, id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return userById;
+		return studentById;
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<User> getAllUsers() throws SQLException {
-		List<User> allUsers = new ArrayList<User>();
-		allUsers = currentSession().createQuery("FROM User").list();
-		return allUsers;
+	public List<Students> getAllStudents() throws SQLException {
+		List<Students> allStudents = new ArrayList<Students>();
+		allStudents = currentSession().createQuery("FROM Students").list();
+		return allStudents;
 	}
 
-	public List<User> sortUsers(int page, int name) throws SQLException {
+	public List<Students> sortStudents(int page, int name) throws SQLException {
 		// TODO
 		return null;
 	}
