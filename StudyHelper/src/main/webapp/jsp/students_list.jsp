@@ -19,15 +19,19 @@
 			<th><spring:message code="label.phone" /></th>
 		</tr>
 		<c:forEach items="${students}" var="students">
+
 			<tr>
+				
 				<td>${students.id}</td>
-				<td>${students.name}</td>
+				<td><a href="student_profile_${students.id}">${students.name}</a></td>
 				<td>${students.surname}</td>
 				<td>${students.password}</td>
 				<td>${students.email}</td>
 				<td>${students.phone}</td>
 				<td><a href="delete_student_${students.id}">Delete</a></td>
+
 			</tr>
+
 
 		</c:forEach>
 
