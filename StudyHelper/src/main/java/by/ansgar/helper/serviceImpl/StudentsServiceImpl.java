@@ -20,28 +20,29 @@ public class StudentsServiceImpl implements StudentService {
 	private StudentDAO studentsDAO;
 
 	@Transactional
-	public void addUser(Students students) throws SQLException {
-		studentsDAO.addUser(students);
+	public void addStudent(Students students) throws SQLException {
+		studentsDAO.addStudent(students);
 	}
 	
 	@Transactional
-	public void addUserFromFile(String name) throws SQLException{
-		studentsDAO.addUserFromFile(name);
+	public void addStudentFromFile(String name) throws SQLException{
+		studentsDAO.addStudentFromFile(name);
 	}
 
 	@Transactional
-	public void editUser(Students students) throws SQLException {
-		studentsDAO.editUser(students);
+	public void editStudent(Students students) throws SQLException {
+		studentsDAO.editStudent(students);
 	}
 
 	@Transactional
-	public void deleteUser(Students students) throws SQLException {
-		studentsDAO.deleteUser(students);
+	public void deleteStudent(Students students) throws SQLException {
+		studentsDAO.deleteStudent(students);
 
 	}
-
-	public Students getUserById(long id) throws SQLException {
-		return studentsDAO.getUserById(id);
+	
+	@Transactional
+	public Students getStudentById(long id) throws SQLException {
+		return studentsDAO.getStudentById(id);
 	}
 
 	@Transactional
