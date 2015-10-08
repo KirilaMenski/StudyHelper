@@ -1,6 +1,7 @@
 package by.ansgar.helper.controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import by.ansgar.helper.dao.impl.StudentsDAOImpl;
 import by.ansgar.helper.entity.Students;
 import by.ansgar.helper.service.StudentService;
 
@@ -23,12 +25,22 @@ public class StudentsListController {
 	private StudentService studentsService;
 	private static long idStudent;
 
-	@RequestMapping(value = "/show_all")
-	public ModelAndView showAll() {
+	@RequestMapping(value = "/show_all_page_{numPage}_sorting_by_{colName}")
+	public ModelAndView showAll(@PathVariable int numPage, @PathVariable String colName) {
 		ModelAndView mav = new ModelAndView();
 		try {
+			List<Students> studentsOnPage = studentsService.sortStudents(numPage, colName);
 			List<Students> allStudents = studentsService.getAllStudents();
-			mav.addObject("students", allStudents);
+			List<Integer> pages = new ArrayList<Integer>();
+
+			for (int i = 0; i < Math.ceil((double) allStudents.size() / (double) StudentsDAOImpl.MAX_RES); i++) {
+				pages.add(i + 1);
+				System.out.println(i);
+			}
+			System.out.println("NumPage = " + numPage);
+			mav.addObject("pages", pages);
+			mav.addObject("colName", colName);
+			mav.addObject("students", studentsOnPage);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -46,7 +58,7 @@ public class StudentsListController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return "forward:/show_all";
+		return "forward:/show_all_page_1";
 	}
 
 	@RequestMapping(value = "/student_profile_{id}", method = { RequestMethod.POST, RequestMethod.GET })
@@ -54,7 +66,7 @@ public class StudentsListController {
 		ModelAndView mav = new ModelAndView();
 		idStudent = id;
 		try {
-			//Students student = new Students();
+			// Students student = new Students();
 			student = studentsService.getStudentById(id);
 			mav.addObject("student", student);
 		} catch (SQLException e) {
@@ -73,8 +85,8 @@ public class StudentsListController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return "forward:/show_all";
-		
+		return "forward:/show_all_page";
+
 	}
 
 	@ModelAttribute("students")
