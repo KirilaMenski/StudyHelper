@@ -55,7 +55,7 @@ public class AddPageController {
 			e.printStackTrace();
 		}
 
-		return "show_all";
+		return "show_all_page_1_sorting_by_id";
 	}
 
 	@ModelAttribute("students")
