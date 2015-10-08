@@ -12,22 +12,30 @@
 	<table border="1">
 		<tr>
 			<th>№</th>
-			<th><spring:message code="label.name" /></th>
-			<th><spring:message code="label.surname" /></th>
-			<th><spring:message code="label.password" /></th>
-			<th><spring:message code="label.email" /></th>
-			<th><spring:message code="label.phone" /></th>
+			<th><a href="show_all_page_1_sorting_by_id"><spring:message
+						code="label.name" /></a></th>
+			<th><a href="show_all_page_1_sorting_by_name"><spring:message
+						code="label.surname" /></a></th>
+			<th><a href="show_all_page_1_sorting_by_password"><spring:message
+						code="label.password" /></a></th>
+			<th><a href="show_all_page_1_sorting_by_email"><spring:message
+						code="label.email" /></a></th>
+			<th><a href="show_all_page_1_sorting_by_phone"><spring:message
+						code="label.phone" /></a></th>
+			<th><a href="show_all_page_1_sorting_by_group"><spring:message
+						code="label.group" /></a></th>
 		</tr>
 		<c:forEach items="${students}" var="students">
 
 			<tr>
-				
+
 				<td>${students.id}</td>
 				<td><a href="student_profile_${students.id}">${students.name}</a></td>
 				<td>${students.surname}</td>
 				<td>${students.password}</td>
 				<td>${students.email}</td>
 				<td>${students.phone}</td>
+				<td>${students.group}</td>
 				<td><a href="delete_student_${students.id}">Delete</a></td>
 
 			</tr>
@@ -36,6 +44,13 @@
 		</c:forEach>
 
 	</table>
+	<br />
+	<c:forEach items="${pages}" var="pages">
+		<ul>
+			<li>-</li>
+			<li><a href="show_all_page_${pages}_sorting_by_${colName}">${pages}</a></li>
+		</ul>
+	</c:forEach>
 
 </body>
 </html>
