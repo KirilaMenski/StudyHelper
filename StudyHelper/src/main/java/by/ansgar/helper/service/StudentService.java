@@ -20,6 +20,6 @@ public interface StudentService {
 
 	public List<Students> getAllStudents() throws SQLException;
 
-	public List<Students> sortStudents(int page, int name) throws SQLException;
+	public List<Students> sortStudents(int numPage, String colName) throws SQLException;
 
 }
