@@ -57,9 +57,15 @@ public class StudentsServiceImpl implements StudentService {
 	}
 
 	@Transactional
-	public List<Students> sortStudents(int page, int name) throws SQLException {
-		// TODO
-		return null;
+	public List<Students> sortStudents(int numPage, String colName) throws SQLException {
+		List<Students> sortStudents = new ArrayList<Students>();
+		try{
+			sortStudents = studentsDAO.sortStudents(numPage, colName);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return sortStudents;
 	}
 
 }
