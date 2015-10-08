@@ -24,6 +24,7 @@ public class StudentsDAOImpl implements StudentDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
+	public static final int MAX_RES = 10;
 
 	public void addStudent(Students students) throws SQLException {
 		currentSession().save(students);
@@ -46,7 +47,7 @@ public class StudentsDAOImpl implements StudentDAO {
 
 		for (int i = 1; i < sheet.getPhysicalNumberOfRows(); i++) {
 			Row rowSheet = sheet.getRow(i);
-			
+
 			Students students = new Students();
 			System.out.println(rowSheet.getCell(0));
 			System.out.println(rowSheet.getCell(1));
@@ -59,6 +60,7 @@ public class StudentsDAOImpl implements StudentDAO {
 			students.setPassword(rowSheet.getCell(2) + "");
 			students.setEmail(rowSheet.getCell(3) + "");
 			students.setPhone(rowSheet.getCell(4) + "");
+			students.setGroup(rowSheet.getCell(5) + "");
 
 			addStudent(students);
 
@@ -91,9 +93,15 @@ public class StudentsDAOImpl implements StudentDAO {
 		return allStudents;
 	}
 
-	public List<Students> sortStudents(int page, int name) throws SQLException {
-		// TODO
-		return null;
+	@SuppressWarnings("unchecked")
+	public List<Students> sortStudents(int numPage, String colName)
+			throws SQLException {
+		List<Students> sortStudents = new ArrayList<Students>();
+		sortStudents = currentSession()
+				.createQuery("From Students stud ORDER BY stud." + colName)
+				.setFirstResult(numPage * MAX_RES - MAX_RES)
+				.setMaxResults(MAX_RES).list();
+		return sortStudents;
 	}
 
 	private Session currentSession() {
