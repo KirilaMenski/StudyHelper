@@ -6,6 +6,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>StudyHelper</title>
+<style type="text/css">
+ul {
+	list-style: none;
+}
+
+ul li {
+	float: left;
+}
+</style>
 </head>
 <body>
 	<a href="main">Main</a>
