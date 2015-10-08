@@ -1,4 +1,4 @@
-package by.ansgar.helper.serviceImpl;
+package by.ansgar.helper.service.impl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import by.ansgar.helper.DAO.StudentDAO;
+import by.ansgar.helper.dao.StudentDAO;
 import by.ansgar.helper.entity.Students;
 import by.ansgar.helper.service.StudentService;
 

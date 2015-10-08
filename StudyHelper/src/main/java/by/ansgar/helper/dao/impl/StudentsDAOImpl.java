@@ -1,4 +1,4 @@
-package by.ansgar.helper.DAOImpl;
+package by.ansgar.helper.dao.impl;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,7 +16,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import by.ansgar.helper.DAO.StudentDAO;
+import by.ansgar.helper.dao.StudentDAO;
 import by.ansgar.helper.entity.Students;
 
 @Repository

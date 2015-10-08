@@ -1,4 +1,4 @@
-package by.ansgar.helper.DAO;
+package by.ansgar.helper.dao;
 
 import java.sql.SQLException;
 import java.util.List;
