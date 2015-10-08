@@ -12,7 +12,7 @@
 	<a href="?lang=be">BE</a>
 	<h1><spring:message code="label.hello"/></h1>
 	
-	<a href="show_all"><spring:message code="href.show_all" /></a>
+	<a href="show_all_page_1_sorting_by_id"><spring:message code="href.show_all" /></a>
 	<a href="add_page"><spring:message code="href.add"/></a>
 	
 </body>
