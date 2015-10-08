@@ -24,6 +24,8 @@
 		<spring:message code="label.phone" />
 		<form:input type="text" path="phone" />
 		<br />
+		<form:input type="text" path="group" />
+		<br />
 		<input type="submit" value="<spring:message code="button.add"/>" />
 	</form:form>
 
