@@ -61,7 +61,6 @@ public class StudentsListController {
 		ModelAndView mav = new ModelAndView();
 		idStudent = id;
 		try {
-			// Students student = new Students();
 			student = studentsService.getStudentById(id);
 			mav.addObject("student", student);
 		} catch (SQLException e) {
@@ -75,7 +74,6 @@ public class StudentsListController {
 	public String editStudent(@ModelAttribute Students student, BindingResult result) {
 		try {
 			student.setId(idStudent);
-			System.out.println(idStudent);
 			studentsService.editStudent(student);
 		} catch (SQLException e) {
 			e.printStackTrace();
