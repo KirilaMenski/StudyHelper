@@ -7,7 +7,7 @@ password varchar(255), email varchar (255), phone varchar(255), class varchar(25
 create table helper.ratings (id bigint (255) not null auto_increment primary key, rating int(10), date varchar (255));
 
 <!-- Lessons table-->
-create table helper.lessons(id bigint(255) not null auto_increment primary key, lesson varchar(255));
+create table helper.lessons(id bigint(255) not null auto_increment primary key, lesson varchar(255), lesson_eng varchar (255));
 
 <!-- Link table-->
 create table helper.link_stud_les_rat (id bigint(255) not null auto_increment primary key, stud_id bigint(255), less_id bigint(255), rat_id bigint(255));
