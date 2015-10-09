@@ -25,14 +25,14 @@ public class LinkStudentsLessonsRating {
 	private Lessons lessons;
 	@ManyToOne
 	@JoinColumn(name = "rat_id", referencedColumnName = "id")
-	private Rating ratings;
+	private Ratings ratings;
 
 	public LinkStudentsLessonsRating() {
 
 	}
 
 	public LinkStudentsLessonsRating(long id, Students students,
-			Lessons lessons, Rating rating) {
+			Lessons lessons, Ratings rating) {
 		this.id = id;
 		this.students = students;
 		this.lessons = lessons;
@@ -63,11 +63,11 @@ public class LinkStudentsLessonsRating {
 		this.lessons = lessons;
 	}
 
-	public Rating getRating() {
+	public Ratings getRating() {
 		return ratings;
 	}
 
-	public void setRating(Rating rating) {
+	public void setRating(Ratings rating) {
 		this.ratings = rating;
 	}
 
