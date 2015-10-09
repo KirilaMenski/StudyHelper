@@ -26,7 +26,7 @@ public class StudentsListController {
 	private static String colName;
 	
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "static-access" })
 	@RequestMapping(value = "/show_all_page_{numPage}_sorting_by_{colName}")
 	public ModelAndView showAll(@PathVariable int numPage, @PathVariable String colName) {
 		ModelAndView mav = new ModelAndView();
