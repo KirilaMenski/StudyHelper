@@ -22,12 +22,16 @@ public class StudentsListController {
 	@Autowired
 	private StudentService studentsService;
 	private static long idStudent;
+	private static int numPage;
+	private static String colName;
 	
 
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/show_all_page_{numPage}_sorting_by_{colName}")
 	public ModelAndView showAll(@PathVariable int numPage, @PathVariable String colName) {
 		ModelAndView mav = new ModelAndView();
+		this.numPage = numPage;
+		this.colName = colName;
 		try {
 			List<Students> studentsOnPage = studentsService.sortStudents(numPage, colName);
 			List<Students> allStudents = studentsService.getAllStudents();
@@ -53,7 +57,7 @@ public class StudentsListController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return "forward:/show_all_page_1_sorting_by_id";
+		return "forward:/show_all_page_"+numPage+"_sorting_by_"+colName;
 	}
 
 	@RequestMapping(value = "/student_profile_{id}", method = { RequestMethod.POST, RequestMethod.GET })
