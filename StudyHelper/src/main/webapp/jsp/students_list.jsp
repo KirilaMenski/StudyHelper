@@ -20,10 +20,10 @@ ul li {
 	<a href="main">Main</a>
 	<table border="1">
 		<tr>
-			<th>№</th>
-			<th><a href="show_all_page_1_sorting_by_id"><spring:message
-						code="label.name" /></a></th>
+			<th><a href="show_all_page_1_sorting_by_id">№</a></th>
 			<th><a href="show_all_page_1_sorting_by_name"><spring:message
+						code="label.name" /></a></th>
+			<th><a href="show_all_page_1_sorting_by_surname"><spring:message
 						code="label.surname" /></a></th>
 			<th><a href="show_all_page_1_sorting_by_password"><spring:message
 						code="label.password" /></a></th>
