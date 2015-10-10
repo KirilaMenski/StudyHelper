@@ -76,10 +76,12 @@ public class StudentsListController {
 		try {
 			student = studentsService.getStudentById(id);
 			List<LinkStudentsLessonsRating> linkStudLes = lslrService
-					.getlessons(id);
-			List<LinkStudentsLessonsRating> lessRat = lslrService.getRating(idStudent);
+					.getStudLessons(id);
+			List<LinkStudentsLessonsRating> lessRat = lslrService.getLessRatings(id);
+			List<LinkStudentsLessonsRating> studRatings = lslrService.getStudRatings(id);
 
-			mav.addObject("less_rating", lessRat);
+//			mav.addObject("less_rating", lessRat);
+			mav.addObject("stud_rating", studRatings);
 			mav.addObject("stud_lessons", linkStudLes);
 			mav.addObject("student", student);
 		} catch (SQLException e) {
