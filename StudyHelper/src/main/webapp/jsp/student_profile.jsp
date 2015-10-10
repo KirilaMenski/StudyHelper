@@ -35,8 +35,8 @@
 		${stud_lessons.lesson}
 	</c:forEach>
 	<br/>
-	<c:forEach items="${less_rating}" var="less_rating">
-		${less_rating.rating} / ${less_rating.date} 
+	<c:forEach items="${stud_rating}" var="stud_rating">
+		${stud_rating.rating} / ${stud_rating.date} 
 	</c:forEach>
 
 </body>
