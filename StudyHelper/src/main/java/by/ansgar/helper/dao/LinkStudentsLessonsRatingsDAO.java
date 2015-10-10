@@ -9,9 +9,11 @@ public interface LinkStudentsLessonsRatingsDAO {
 	
 	public void addLink(LinkStudentsLessonsRating linkSLR) throws SQLException;
 	
-	public List<LinkStudentsLessonsRating> getlessons (long id) throws SQLException;
+	public List<LinkStudentsLessonsRating> getStudLessons (long id) throws SQLException;
 	
-	public List<LinkStudentsLessonsRating> getRating (long id) throws SQLException;
+	public List<LinkStudentsLessonsRating> getLessRatings (long id) throws SQLException;
+	
+	public List<LinkStudentsLessonsRating> getStudRatings(long id) throws SQLException;
 	
 
 }
