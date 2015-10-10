@@ -26,18 +26,26 @@ public class LinkStudentsLessonsRatingsServiceImpl implements LinkStudentsLesson
 	}
 
 	@Transactional
-	public List<LinkStudentsLessonsRating> getlessons(long id)
+	public List<LinkStudentsLessonsRating> getStudLessons(long id)
 			throws SQLException {
 		List<LinkStudentsLessonsRating> lessonsById = new ArrayList<LinkStudentsLessonsRating>();
-		lessonsById = linkSLRDAO.getlessons(id);
+		lessonsById = linkSLRDAO.getStudLessons(id);
 		return lessonsById;
 	}
 
 	@Transactional
-	public List<LinkStudentsLessonsRating> getRating(long id)
+	public List<LinkStudentsLessonsRating> getLessRatings(long id)
 			throws SQLException {
 		List<LinkStudentsLessonsRating> ratingById = new ArrayList<LinkStudentsLessonsRating>();
-		ratingById = linkSLRDAO.getRating(id);
+		ratingById = linkSLRDAO.getLessRatings(id);
+		return ratingById;
+	}
+	
+	@Transactional
+	public List<LinkStudentsLessonsRating> getStudRatings(long id)
+			throws SQLException {
+		List<LinkStudentsLessonsRating> ratingById = new ArrayList<LinkStudentsLessonsRating>();
+		ratingById = linkSLRDAO.getStudRatings(id);
 		return ratingById;
 	}
 
