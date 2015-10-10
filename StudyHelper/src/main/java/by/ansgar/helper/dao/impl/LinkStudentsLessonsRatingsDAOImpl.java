@@ -24,7 +24,7 @@ public class LinkStudentsLessonsRatingsDAOImpl
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<LinkStudentsLessonsRating> getlessons(long id)
+	public List<LinkStudentsLessonsRating> getStudLessons(long id)
 			throws SQLException {
 
 		List<LinkStudentsLessonsRating> lessons = new ArrayList<LinkStudentsLessonsRating>();
@@ -40,7 +40,7 @@ public class LinkStudentsLessonsRatingsDAOImpl
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<LinkStudentsLessonsRating> getRating(long id)
+	public List<LinkStudentsLessonsRating> getLessRatings(long id)
 			throws SQLException {
 		List<LinkStudentsLessonsRating> ratings = new ArrayList<LinkStudentsLessonsRating>();
 		ratings = currentSession()
@@ -49,6 +49,20 @@ public class LinkStudentsLessonsRatingsDAOImpl
 								+ " WHERE slr.ratings.id = slr.ratings"
 								+ " AND slr.lessons = slr.lessons.id"
 								+ " AND slr.lessons.id = :id")
+				.setParameter("id", id).list();
+		return ratings;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<LinkStudentsLessonsRating> getStudRatings(long id)
+			throws SQLException {
+		List<LinkStudentsLessonsRating> ratings = new ArrayList<LinkStudentsLessonsRating>();
+		ratings = currentSession()
+				.createQuery(
+						"SELECT rat FROM LinkStudentsLessonsRating slr LEFT OUTER JOIN slr.ratings rat LEFT OUTER JOIN slr.students stud"
+								+ " WHERE slr.ratings.id = slr.ratings"
+								+ " AND slr.students = slr.students.id"
+								+ " AND slr.students.id = :id")
 				.setParameter("id", id).list();
 		return ratings;
 	}
