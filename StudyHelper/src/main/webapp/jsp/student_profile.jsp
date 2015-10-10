@@ -31,6 +31,13 @@
 		<input type="submit" value="<spring:message code="button.add"/>" />
 	</form:form>
 
+	<c:forEach items="${stud_lessons}" var="stud_lessons">
+		${stud_lessons.lesson}
+	</c:forEach>
+	<br/>
+	<c:forEach items="${less_rating}" var="less_rating">
+		${less_rating.rating} / ${less_rating.date} 
+	</c:forEach>
 
 </body>
 </html>
