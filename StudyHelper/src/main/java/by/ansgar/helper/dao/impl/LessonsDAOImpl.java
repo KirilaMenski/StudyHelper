@@ -29,7 +29,7 @@ public class LessonsDAOImpl implements LessonsDAO{
 	@SuppressWarnings("unchecked")
 	public List<Lessons> getAllLessons() throws SQLException {
 		List<Lessons> allLessons = new ArrayList<Lessons>();
-		allLessons = currentSession().createQuery("From Lessons").list();
+		allLessons = currentSession().createQuery("From Lessons l ORDER BY l.lesson").list();
 		return allLessons;
 	}
 
