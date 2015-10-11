@@ -103,10 +103,22 @@ public class StudentsDAOImpl implements StudentDAO {
 				.setMaxResults(MAX_RES).list();
 		return sortStudents;
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Students> getStudentsByGroup(String group) throws SQLException {
+		List<Students> studentsByGroup = new ArrayList<Students>();
+		studentsByGroup = currentSession()
+				.createQuery("FROM Students s WHERE s.group = :group ORDER BY s.surname")
+				.setParameter("group", group).list();
+		return studentsByGroup;
+	}
 
 	private Session currentSession() {
 		Session currentSession = sessionFactory.getCurrentSession();
 		return currentSession;
 	}
+
+	
 
 }
