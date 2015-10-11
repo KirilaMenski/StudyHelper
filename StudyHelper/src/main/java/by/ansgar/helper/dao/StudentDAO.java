@@ -20,4 +20,6 @@ public interface StudentDAO {
 	public List<Students> getAllStudents() throws SQLException;
 
 	public List<Students> sortStudents(int numPage, String colName) throws SQLException;
+	
+	public List<Students> getStudentsByGroup(String group) throws SQLException;
 }
