@@ -44,7 +44,7 @@ ul li {
 				<td>${students.password}</td>
 				<td>${students.email}</td>
 				<td>${students.phone}</td>
-				<td>${students.group}</td>
+				<td><a href="view_group_${students.group}">${students.group}</a></td>
 				<td><a href="delete_student_${students.id}">Delete</a></td>
 
 			</tr>

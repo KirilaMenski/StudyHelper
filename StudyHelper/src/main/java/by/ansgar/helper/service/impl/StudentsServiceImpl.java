@@ -23,9 +23,9 @@ public class StudentsServiceImpl implements StudentService {
 	public void addStudent(Students students) throws SQLException {
 		studentsDAO.addStudent(students);
 	}
-	
+
 	@Transactional
-	public void addStudentFromFile(String name) throws SQLException{
+	public void addStudentFromFile(String name) throws SQLException {
 		studentsDAO.addStudentFromFile(name);
 	}
 
@@ -39,7 +39,7 @@ public class StudentsServiceImpl implements StudentService {
 		studentsDAO.deleteStudent(students);
 
 	}
-	
+
 	@Transactional
 	public Students getStudentById(long id) throws SQLException {
 		return studentsDAO.getStudentById(id);
@@ -57,15 +57,23 @@ public class StudentsServiceImpl implements StudentService {
 	}
 
 	@Transactional
-	public List<Students> sortStudents(int numPage, String colName) throws SQLException {
+	public List<Students> sortStudents(int numPage, String colName)
+			throws SQLException {
 		List<Students> sortStudents = new ArrayList<Students>();
-		try{
+		try {
 			sortStudents = studentsDAO.sortStudents(numPage, colName);
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return sortStudents;
+	}
+
+	@Transactional
+	public List<Students> getStudentsByGroup(String group) throws SQLException {
+		List<Students> studentsByGroup = new ArrayList<Students>();
+		studentsByGroup = studentsDAO.getStudentsByGroup(group);
+		return studentsByGroup;
 	}
 
 }
