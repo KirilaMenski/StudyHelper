@@ -77,10 +77,10 @@ public class StudentsListController {
 			student = studentsService.getStudentById(id);
 			List<LinkStudentsLessonsRating> linkStudLes = lslrService
 					.getStudLessons(id);
-			List<LinkStudentsLessonsRating> lessRat = lslrService.getLessRatings(id);
+			List<LinkStudentsLessonsRating> lessRatings = lslrService.getLessRatings(id);
 			List<LinkStudentsLessonsRating> studRatings = lslrService.getStudRatings(id);
 
-//			mav.addObject("less_rating", lessRat);
+//			mav.addObject("less_rating", lessRatings);
 			mav.addObject("stud_rating", studRatings);
 			mav.addObject("stud_lessons", linkStudLes);
 			mav.addObject("student", student);
