@@ -48,11 +48,8 @@ public class StudentsServiceImpl implements StudentService {
 	@Transactional
 	public List<Students> getAllStudents() throws SQLException {
 		List<Students> allStudents = new ArrayList<Students>();
-		try {
-			allStudents = studentsDAO.getAllStudents();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+
+		allStudents = studentsDAO.getAllStudents();
 		return allStudents;
 	}
 
@@ -60,11 +57,7 @@ public class StudentsServiceImpl implements StudentService {
 	public List<Students> sortStudents(int numPage, String colName)
 			throws SQLException {
 		List<Students> sortStudents = new ArrayList<Students>();
-		try {
-			sortStudents = studentsDAO.sortStudents(numPage, colName);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		sortStudents = studentsDAO.sortStudents(numPage, colName);
 
 		return sortStudents;
 	}

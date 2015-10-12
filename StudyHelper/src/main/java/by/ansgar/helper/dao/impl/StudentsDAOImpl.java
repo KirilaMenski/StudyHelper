@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -16,11 +17,14 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import by.ansgar.helper.controller.StudentsListController;
 import by.ansgar.helper.dao.StudentDAO;
 import by.ansgar.helper.entity.Students;
 
 @Repository
 public class StudentsDAOImpl implements StudentDAO {
+
+	private static final Logger LOG = Logger.getLogger(StudentsDAOImpl.class);
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -39,8 +43,10 @@ public class StudentsDAOImpl implements StudentDAO {
 			wb = new HSSFWorkbook(is);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+			LOG.warn(e);
 		} catch (IOException e) {
 			e.printStackTrace();
+			LOG.warn(e);
 		}
 
 		Sheet sheet = wb.getSheetAt(0);
@@ -78,11 +84,7 @@ public class StudentsDAOImpl implements StudentDAO {
 
 	public Students getStudentById(long id) throws SQLException {
 		Students studentById = null;
-		try {
-			studentById = (Students) currentSession().get(Students.class, id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		studentById = (Students) currentSession().get(Students.class, id);
 		return studentById;
 	}
 
@@ -103,13 +105,14 @@ public class StudentsDAOImpl implements StudentDAO {
 				.setMaxResults(MAX_RES).list();
 		return sortStudents;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Students> getStudentsByGroup(String group) throws SQLException {
 		List<Students> studentsByGroup = new ArrayList<Students>();
 		studentsByGroup = currentSession()
-				.createQuery("FROM Students s WHERE s.group = :group ORDER BY s.surname")
+				.createQuery(
+						"FROM Students s WHERE s.group = :group ORDER BY s.surname")
 				.setParameter("group", group).list();
 		return studentsByGroup;
 	}
@@ -118,7 +121,5 @@ public class StudentsDAOImpl implements StudentDAO {
 		Session currentSession = sessionFactory.getCurrentSession();
 		return currentSession;
 	}
-
-	
 
 }

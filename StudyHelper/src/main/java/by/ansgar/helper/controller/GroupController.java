@@ -3,6 +3,7 @@ package by.ansgar.helper.controller;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,8 @@ import by.ansgar.helper.service.StudentService;
 
 @Controller
 public class GroupController {
+	
+	private static final Logger LOG = Logger.getLogger(GroupController.class);
 	
 	@Autowired
 	private StudentService studentService;
@@ -34,6 +37,7 @@ public class GroupController {
 			mav.addObject("studentsByGroup", studentsByGroup);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOG.warn(e);
 		}
 		
 		mav.setViewName("group");

@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -18,6 +19,8 @@ import by.ansgar.helper.service.StudentService;
 
 @Controller
 public class AddPageController {
+	
+	private static final Logger LOG = Logger.getLogger(AddPageController.class);
 
 	@Autowired
 	private StudentService studentsService;
@@ -37,6 +40,7 @@ public class AddPageController {
 			studentsService.addStudent(students);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOG.warn(e);
 		}
 		return "main";
 	}
@@ -52,6 +56,7 @@ public class AddPageController {
 			studentsService.addStudentFromFile(name);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOG.warn(e);
 		}
 
 		return "forward:/show_all_page_1_sorting_by_id";

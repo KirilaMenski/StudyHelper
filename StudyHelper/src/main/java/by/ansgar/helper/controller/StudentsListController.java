@@ -3,6 +3,7 @@ package by.ansgar.helper.controller;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -21,6 +22,8 @@ import by.ansgar.helper.util.NumbPages;
 @Controller
 public class StudentsListController {
 
+	private static final Logger LOG = Logger.getLogger(StudentsListController.class);
+	
 	@Autowired
 	private StudentService studentsService;
 	@Autowired
@@ -45,8 +48,10 @@ public class StudentsListController {
 			mav.addObject("pages", pages);
 			mav.addObject("colName", colName);
 			mav.addObject("students", studentsOnPage);
+			LOG.info("Show All");
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOG.warn(e);
 		}
 
 		mav.setViewName("students_list");
@@ -63,6 +68,7 @@ public class StudentsListController {
 			studentsService.deleteStudent(students);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOG.warn(e);
 		}
 		return "forward:/show_all_page_" + numPage + "_sorting_by_" + colName;
 	}
@@ -86,6 +92,7 @@ public class StudentsListController {
 			mav.addObject("student", student);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOG.warn(e);
 		}
 		mav.setViewName("student_profile");
 		return mav;
@@ -100,6 +107,7 @@ public class StudentsListController {
 			studentsService.editStudent(student);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOG.warn(e);
 		}
 		return "forward:/show_all_page_1_sorting_by_id";
 

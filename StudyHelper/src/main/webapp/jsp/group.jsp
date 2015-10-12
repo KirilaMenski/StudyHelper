@@ -20,8 +20,8 @@
 	<table border="1">
 		<c:forEach items="${studentsByGroup}" var="studentsByGroup">
 			<tr>
-				<th><a href="student_profile_${studentsByGroup.id}">${studentsByGroup.name}
-						${studentsByGroup.surname}</a></th>
+				<th><a href="student_profile_${studentsByGroup.id}">${studentsByGroup.surname}
+						${studentsByGroup.name}</a></th>
 			</tr>
 		</c:forEach>
 	</table>
