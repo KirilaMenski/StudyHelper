@@ -13,22 +13,23 @@ public class Lessons {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="id")
+	@Column(name = "id")
 	private long id;
-	@Column(name="lesson")
+	@Column(name = "lesson")
 	private String lesson;
+	@Column(name = "lesson_eng")
+	private String lesson_eng;
 
 	public Lessons() {
 
 	}
 
-	public Lessons(long id, String lesson) {
+	public Lessons(long id, String lesson, String lesson_eng) {
 		super();
 		this.id = id;
 		this.lesson = lesson;
+		this.lesson_eng = lesson_eng;
 	}
-
-
 
 	public long getId() {
 		return id;
@@ -44,6 +45,14 @@ public class Lessons {
 
 	public void setLesson(String lesson) {
 		this.lesson = lesson;
+	}
+
+	public String getLesson_eng() {
+		return lesson_eng;
+	}
+
+	public void setLesson_eng(String lesson_eng) {
+		this.lesson_eng = lesson_eng;
 	}
 
 }
