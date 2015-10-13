@@ -25,13 +25,13 @@ public class GroupController {
 	@Autowired
 	private LessonsService lessonsService;
 	
-	@RequestMapping(value="/view_group_{group}")
-	public ModelAndView showGroup(@PathVariable String group){
+	@RequestMapping(value="/view_group_{group}_lesson_{lesson}")
+	public ModelAndView showGroup(@PathVariable String group, @PathVariable String lesson){
 		ModelAndView mav = new ModelAndView();
 		try {
 			List<Students> studentsByGroup = studentService.getStudentsByGroup(group);
 			List<Lessons> lessons = lessonsService.getAllLessons();
-			
+			System.out.println(lesson);
 			mav.addObject("lessons", lessons);
 			mav.addObject("group", group);
 			mav.addObject("studentsByGroup", studentsByGroup);
