@@ -5,26 +5,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="res/js/select_lesson.js"></script>
 <title>Study Helper</title>
 </head>
 <body>
 
 	${group}
-	<br/>
-	<select>
+	<br />
+
 		<c:forEach items="${lessons}" var="lessons">
-		<option>${lessons.lesson}</option>
+		<a href="view_group_${group}_lesson_${lessons.lesson_eng}"> ${lessons.lesson}</a>
 		</c:forEach>
-	</select>
-
-	<table border="1">
-		<c:forEach items="${studentsByGroup}" var="studentsByGroup">
-			<tr>
-				<th><a href="student_profile_${studentsByGroup.id}">${studentsByGroup.surname}
-						${studentsByGroup.name}</a></th>
-			</tr>
-		</c:forEach>
-	</table>
-
+		<table border="1">
+			<c:forEach items="${studentsByGroup}" var="studentsByGroup">
+				<tr>
+					<th><a href="student_profile_${studentsByGroup.id}">${studentsByGroup.surname}
+							${studentsByGroup.name}</a></th>
+				</tr>
+			</c:forEach>
+		</table>
 </body>
 </html>
