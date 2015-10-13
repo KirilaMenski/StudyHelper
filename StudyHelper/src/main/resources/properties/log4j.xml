@@ -29,16 +29,16 @@
     </appender>
 
 	<logger name="com.journaldev.hibernate" additivity="false">
-		<level value="warn" />
+		<level value="all" />
 		<appender-ref ref="journaldev-hibernate" />
 	</logger>
 
 	<logger name="org.hibernate" additivity="false">
-		<level value="warn" />
+		<level value="all" />
 		<appender-ref ref="FILE" />
 	</logger>
 	<root>
-		<priority value="warn"></priority>
+		<priority value="all"></priority>
 		<appender-ref ref="FILE" />
 	</root>
 
