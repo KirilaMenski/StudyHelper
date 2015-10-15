@@ -67,6 +67,25 @@ public class LinkStudentsLessonsRatingsDAOImpl
 		return ratings;
 	}
 
+	// TODO
+	@SuppressWarnings("unchecked")
+	public List<LinkStudentsLessonsRating> getRatingsByStudAndLesson(
+			long lessonId, long studentId) throws SQLException {
+		List<LinkStudentsLessonsRating> ratings = new ArrayList<LinkStudentsLessonsRating>();
+		ratings = currentSession()
+				.createQuery(
+						"SELECT rat FROM LinkStudentsLessonsRating slr LEFT OUTER JOIN slr.ratings rat LEFT OUTER JOIN slr.lessons les LEFT OUTER JOIN slr.students"
+								+ " WHERE slr.ratings.id = slr.ratings"
+								+ " AND slr.lessons = slr.lessons.id"
+								+ " AND slr.lessons.id = :lessonId"
+								+ " AND slr.students = slr.students.id"
+								+ " AND slr.students.id = :studentId")
+				.setParameter("lessonId", lessonId)
+				.setParameter("studentId", studentId).list();
+		System.out.println(lessonId + " // " + studentId);
+		return ratings;
+	}
+
 	private Session currentSession() {
 		Session currentSession = sessionFactory.getCurrentSession();
 		return currentSession;
