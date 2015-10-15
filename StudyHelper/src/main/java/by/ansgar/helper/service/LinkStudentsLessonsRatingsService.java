@@ -15,5 +15,8 @@ public void addLink(LinkStudentsLessonsRating linkSLR) throws SQLException;
 	
 	public List<LinkStudentsLessonsRating> getStudRatings(long id) throws SQLException;
 	
+	public List<LinkStudentsLessonsRating> getRatingsByStudAndLesson(
+			long lessonId, long studentId) throws SQLException;
+	
 
 }
