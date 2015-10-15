@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import by.ansgar.helper.dao.LessonsDAO;
+import by.ansgar.helper.entity.Lessons;
 import by.ansgar.helper.entity.LinkStudentsLessonsRating;
 import by.ansgar.helper.entity.Students;
+import by.ansgar.helper.service.LessonsService;
 import by.ansgar.helper.service.LinkStudentsLessonsRatingsService;
 import by.ansgar.helper.service.StudentService;
 import by.ansgar.helper.util.NumbPages;
@@ -22,12 +25,15 @@ import by.ansgar.helper.util.NumbPages;
 @Controller
 public class StudentsListController {
 
-	private static final Logger LOG = Logger.getLogger(StudentsListController.class);
-	
+	private static final Logger LOG = Logger
+			.getLogger(StudentsListController.class);
+
 	@Autowired
 	private StudentService studentsService;
 	@Autowired
 	private LinkStudentsLessonsRatingsService lslrService;
+	@Autowired
+	private LessonsService lessonsService;
 	private static long idStudent;
 	private static int numPage;
 	private static String colName;
@@ -73,22 +79,31 @@ public class StudentsListController {
 		return "forward:/show_all_page_" + numPage + "_sorting_by_" + colName;
 	}
 
-	@RequestMapping(value = "/student_profile_{id}", method = {
+	@RequestMapping(value = "/student_profile_{studentId}_lesson_{lessonId}", method = {
 			RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView showProfile(@PathVariable long id,
-			@ModelAttribute Students student, BindingResult result) {
+	public ModelAndView showProfile(@PathVariable long studentId,
+			@PathVariable long lessonId, @ModelAttribute Students student,
+			BindingResult result) {
 		ModelAndView mav = new ModelAndView();
-		idStudent = id;
+		idStudent = studentId;
 		try {
-			student = studentsService.getStudentById(id);
-			List<LinkStudentsLessonsRating> linkStudLes = lslrService
-					.getStudLessons(id);
-			List<LinkStudentsLessonsRating> lessRatings = lslrService.getLessRatings(id);
-			List<LinkStudentsLessonsRating> studRatings = lslrService.getStudRatings(id);
+			student = studentsService.getStudentById(studentId);
+			
+			List<Lessons> allLessons = lessonsService.getAllLessons();
+//			List<LinkStudentsLessonsRating> linkStudLes = lslrService
+//					.getStudLessons(studentId);
+//			List<LinkStudentsLessonsRating> lessRatings = lslrService
+//					.getLessRatings(studentId);
+//			List<LinkStudentsLessonsRating> studRatings = lslrService
+//					.getStudRatings(studentId);
+			List<LinkStudentsLessonsRating> studRatingByLesson = lslrService
+					.getRatingsByStudAndLesson(lessonId, studentId);
 
-//			mav.addObject("less_rating", lessRatings);
-			mav.addObject("stud_rating", studRatings);
-			mav.addObject("stud_lessons", linkStudLes);
+			// mav.addObject("less_rating", lessRatings);
+			// mav.addObject("stud_rating", studRatings);
+			mav.addObject("studentId", studentId);
+			mav.addObject("stud_rating", studRatingByLesson);
+			mav.addObject("stud_lessons", allLessons);
 			mav.addObject("student", student);
 		} catch (SQLException e) {
 			e.printStackTrace();
