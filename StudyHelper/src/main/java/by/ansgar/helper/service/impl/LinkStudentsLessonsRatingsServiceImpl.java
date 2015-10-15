@@ -49,4 +49,12 @@ public class LinkStudentsLessonsRatingsServiceImpl implements LinkStudentsLesson
 		return ratingById;
 	}
 
+	@Transactional
+	public List<LinkStudentsLessonsRating> getRatingsByStudAndLesson(
+			long lessonId, long studentId) throws SQLException {
+		List<LinkStudentsLessonsRating> studentRating = new ArrayList<LinkStudentsLessonsRating>();
+		studentRating = linkSLRDAO.getRatingsByStudAndLesson(lessonId, studentId);
+		return studentRating;
+	}
+
 }
