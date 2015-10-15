@@ -21,7 +21,6 @@
 				<tr>
 					<th><a href="student_profile_${studentsByGroup.id}">${studentsByGroup.surname}
 							${studentsByGroup.name}</a></th>
-							<td><input type="text" /></td>
 				</tr>
 			</c:forEach>
 		</table>
