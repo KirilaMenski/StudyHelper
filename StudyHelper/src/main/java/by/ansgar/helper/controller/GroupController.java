@@ -11,10 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import by.ansgar.helper.entity.Lessons;
-import by.ansgar.helper.entity.LinkStudentsLessonsRating;
 import by.ansgar.helper.entity.Students;
 import by.ansgar.helper.service.LessonsService;
-import by.ansgar.helper.service.LinkStudentsLessonsRatingsService;
 import by.ansgar.helper.service.StudentService;
 
 @Controller
@@ -26,8 +24,6 @@ public class GroupController {
 	private StudentService studentService;
 	@Autowired
 	private LessonsService lessonsService;
-	@Autowired
-	private LinkStudentsLessonsRatingsService linkSLRService;
 	
 	@RequestMapping(value="/view_group_{group}_lesson_{lesson}")
 	public ModelAndView showGroup(@PathVariable String group, @PathVariable String lesson){
