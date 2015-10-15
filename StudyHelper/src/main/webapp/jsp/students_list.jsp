@@ -39,7 +39,7 @@ ul li {
 			<tr>
 
 				<td>${students.id}</td>
-				<td><a href="student_profile_${students.id}">${students.name}</a></td>
+				<td><a href="student_profile_${students.id}_lesson_1">${students.name}</a></td>
 				<td>${students.surname}</td>
 				<td>${students.password}</td>
 				<td>${students.email}</td>
