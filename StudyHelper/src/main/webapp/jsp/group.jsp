@@ -14,15 +14,18 @@
 	<br />
 
 		<c:forEach items="${lessons}" var="lessons">
-		<a href="view_group_${group}_lesson_${lessons.lesson_eng}"> ${lessons.lesson}</a>
+		<a href="view_group_${group}_lesson_${lessons.id}"> ${lessons.lesson}</a>
 		</c:forEach>
 		<table border="1">
 			<c:forEach items="${studentsByGroup}" var="studentsByGroup">
 				<tr>
-					<th><a href="student_profile_${studentsByGroup.id}">${studentsByGroup.surname}
+					<th><a href="student_profile_${studentsByGroup.id}_lesson_1">${studentsByGroup.surname}
 							${studentsByGroup.name}</a></th>
 				</tr>
 			</c:forEach>
 		</table>
+		<c:forEach items="${studRatings}" var = "studRatings">
+			${studRatings.rating}
+		</c:forEach>
 </body>
 </html>
