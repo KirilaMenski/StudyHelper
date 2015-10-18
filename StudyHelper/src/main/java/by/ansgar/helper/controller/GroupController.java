@@ -40,8 +40,14 @@ public class GroupController {
 			for(int i = 0; i < studentsByGroup.size(); i++){
 				System.out.println(studentsByGroup.get(i).getId());
 				studRatingById.addAll(lslrService.getRatingsByStudAndLesson(lesson, studentsByGroup.get(i).getId()));
+				System.out.println(studRatingById);
 			}
 			System.out.println(lesson);
+			List<Integer> numb = new ArrayList<Integer>();
+			for(int i = 0; i < 10; i++){
+				numb.add(i);
+			}
+			mav.addObject("numb", numb);
 			mav.addObject("studRatings", studRatingById);
 			mav.addObject("lessons", lessons);
 			mav.addObject("group", group);

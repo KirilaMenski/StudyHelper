@@ -13,19 +13,29 @@
 	${group}
 	<br />
 
-		<c:forEach items="${lessons}" var="lessons">
-		<a href="view_group_${group}_lesson_${lessons.id}"> ${lessons.lesson}</a>
+	<c:forEach items="${lessons}" var="lessons">
+		<a href="view_group_${group}_lesson_${lessons.id}">
+			${lessons.lesson}</a>
+	</c:forEach>
+	<table border="1">
+		<c:forEach items="${studentsByGroup}" var="studentsByGroup">
+			<tr>
+				<th><a href="student_profile_${studentsByGroup.id}_lesson_1">${studentsByGroup.surname}
+						${studentsByGroup.name}</a></th>
+				<c:forEach items="${studRatings}" var="studRatings">
+					<td width="2"><input type="text" value="${studRatings.rating}" size="1"/></td>
+				</c:forEach>
+
+			</tr>
 		</c:forEach>
-		<table border="1">
-			<c:forEach items="${studentsByGroup}" var="studentsByGroup">
-				<tr>
-					<th><a href="student_profile_${studentsByGroup.id}_lesson_1">${studentsByGroup.surname}
-							${studentsByGroup.name}</a></th>
-				</tr>
-			</c:forEach>
-		</table>
-		<c:forEach items="${studRatings}" var = "studRatings">
-			${studRatings.rating}
+	</table>
+	<table border="1">
+		<c:forEach items="${studRatings}" var="studRatings">
+			<tr>
+				<th><input type="text" value="${studRatings.rating}" /></th>
+			</tr>
+
 		</c:forEach>
+	</table>
 </body>
 </html>
