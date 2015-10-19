@@ -28,7 +28,7 @@
 		<br />
 		<form:input type="text" path="group" value="${student.group}" />
 		<br />
-		<input type="submit" value="<spring:message code="button.add"/>" />
+		<input type="submit" value="<spring:message code="button.update"/>" />
 	</form:form>
 	<br/>
 
