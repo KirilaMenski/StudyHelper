@@ -22,17 +22,17 @@ ul li {
 		<tr>
 			<th><a href="show_all_page_1_sorting_by_id">№</a></th>
 			<th><a href="show_all_page_1_sorting_by_name"><spring:message
-						code="label.name" /></a></th>
+						code="table.name" /></a></th>
 			<th><a href="show_all_page_1_sorting_by_surname"><spring:message
-						code="label.surname" /></a></th>
+						code="table.surname" /></a></th>
 			<th><a href="show_all_page_1_sorting_by_password"><spring:message
-						code="label.password" /></a></th>
+						code="table.password" /></a></th>
 			<th><a href="show_all_page_1_sorting_by_email"><spring:message
-						code="label.email" /></a></th>
+						code="table.email" /></a></th>
 			<th><a href="show_all_page_1_sorting_by_phone"><spring:message
-						code="label.phone" /></a></th>
+						code="table.phone" /></a></th>
 			<th><a href="show_all_page_1_sorting_by_group"><spring:message
-						code="label.group" /></a></th>
+						code="table.group" /></a></th>
 		</tr>
 		<c:forEach items="${students}" var="students">
 
@@ -45,7 +45,7 @@ ul li {
 				<td>${students.email}</td>
 				<td>${students.phone}</td>
 				<td><a href="view_group_${students.group}_lesson_1">${students.group}</a></td>
-				<td><a href="delete_student_${students.id}">Delete</a></td>
+				<td><a href="delete_student_${students.id}"><spring:message code="label.delete" /></a></td>
 
 			</tr>
 
