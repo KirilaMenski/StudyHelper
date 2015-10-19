@@ -1,9 +1,11 @@
 package by.ansgar.helper.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,14 +14,17 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import by.ansgar.helper.entity.Students;
 import by.ansgar.helper.service.StudentService;
+import by.ansgar.helper.util.Upload;
 
 @Controller
 public class AddPageController {
-	
+
 	private static final Logger LOG = Logger.getLogger(AddPageController.class);
 
 	@Autowired
@@ -34,8 +39,10 @@ public class AddPageController {
 
 	}
 
-	@RequestMapping(value = "/add_student", method = { RequestMethod.GET, RequestMethod.POST })
-	public String addUsers(@ModelAttribute Students students, BindingResult result) {
+	@RequestMapping(value = "/add_student", method = { RequestMethod.GET,
+			RequestMethod.POST })
+	public String addUsers(@ModelAttribute Students students,
+			BindingResult result) {
 		try {
 			studentsService.addStudent(students);
 		} catch (SQLException e) {
@@ -45,28 +52,27 @@ public class AddPageController {
 		return "main";
 	}
 
-	//TODO
-	@RequestMapping(value = "/add_usersFromFile", method = { RequestMethod.GET, RequestMethod.POST })
-	public String addUserdFromFile( HttpServletRequest request) throws IOException {
-
-		String name = request.getParameter("file_name");
-		System.out.println(name);
+	@RequestMapping(value = "/add_usersFromFile", method = { RequestMethod.GET,
+			RequestMethod.POST })
+	public ModelAndView addUserdFromFile(
+			@RequestParam(value = "file", required = false) MultipartFile multipartFile) {
+		ModelAndView mav = new ModelAndView();
 
 		try {
-			studentsService.addStudentFromFile(name);
-		} catch (SQLException e) {
+			Upload.doUpload(multipartFile);
+			studentsService.addStudentFromFile(Upload.path.toString());
+		}  catch (SQLException e) {
 			e.printStackTrace();
 			LOG.warn(e);
 		}
-
-		return "forward:/show_all_page_1_sorting_by_id";
+		System.out.println(Upload.path);
+		mav.setViewName("forward:/show_all_page_1_sorting_by_id");
+		return mav;
 	}
 
 	@ModelAttribute("students")
 	public Students students() {
 		return new Students();
 	}
-	
-	
 
 }
