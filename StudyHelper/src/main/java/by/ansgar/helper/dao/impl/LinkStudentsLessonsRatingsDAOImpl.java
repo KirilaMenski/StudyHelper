@@ -82,7 +82,6 @@ public class LinkStudentsLessonsRatingsDAOImpl
 								+ " AND slr.students.id = :studentId")
 				.setParameter("lessonId", lessonId)
 				.setParameter("studentId", studentId).list();
-		System.out.println(lessonId + " // " + studentId);
 		return ratings;
 	}
 
