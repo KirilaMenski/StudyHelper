@@ -28,7 +28,7 @@ public class StudentsDAOImpl implements StudentDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	public static final int MAX_RES = 10;
+	public static final int MAX_RES = 20;
 
 	public void addStudent(Students students) throws SQLException {
 		currentSession().save(students);

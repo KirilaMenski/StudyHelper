@@ -90,17 +90,9 @@ public class StudentsListController {
 			student = studentsService.getStudentById(studentId);
 			
 			List<Lessons> allLessons = lessonsService.getAllLessons();
-//			List<LinkStudentsLessonsRating> linkStudLes = lslrService
-//					.getStudLessons(studentId);
-//			List<LinkStudentsLessonsRating> lessRatings = lslrService
-//					.getLessRatings(studentId);
-//			List<LinkStudentsLessonsRating> studRatings = lslrService
-//					.getStudRatings(studentId);
 			List<LinkStudentsLessonsRating> studRatingByLesson = lslrService
 					.getRatingsByStudAndLesson(lessonId, studentId);
 
-			// mav.addObject("less_rating", lessRatings);
-			// mav.addObject("stud_rating", studRatings);
 			mav.addObject("studentId", studentId);
 			mav.addObject("stud_rating", studRatingByLesson);
 			mav.addObject("stud_lessons", allLessons);

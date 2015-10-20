@@ -57,15 +57,15 @@ public class AddPageController {
 	public ModelAndView addUserdFromFile(
 			@RequestParam(value = "file", required = false) MultipartFile multipartFile) {
 		ModelAndView mav = new ModelAndView();
-
+		Upload.doUpload(multipartFile);
+		
 		try {
-			Upload.doUpload(multipartFile);
 			studentsService.addStudentFromFile(Upload.path.toString());
 		}  catch (SQLException e) {
 			e.printStackTrace();
 			LOG.warn(e);
 		}
-		System.out.println(Upload.path);
+		
 		mav.setViewName("forward:/show_all_page_1_sorting_by_id");
 		return mav;
 	}

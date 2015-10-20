@@ -44,31 +44,11 @@ public class GroupController {
 			List<LinkStudentsLessonsRating> studRatingById = new ArrayList<LinkStudentsLessonsRating>();
 			
 			for (int i = 0; i < studentsByGroup.size(); i++) {
-				studRatingById.addAll(lslrService.getRatingsByStudAndLesson(
-						lesson, studentsByGroup.get(i).getId()));
+				studRatingById = lslrService.getRatingsByStudAndLesson(
+						lesson, studentsByGroup.get(0).getId());
 			}
 			
-			List<Integer> numb = new ArrayList<Integer>();
-			for(int i = 0; i < 10; i++){
-				numb.add(i);
-			}
 			
-			int [][] x = new int [5][5];
-			for(int i = 0; i < 5; i++){
-				
-				for(int j = 0; j < 5; j++){
-					x[i][j] = i;
-					System.out.print(x[i][j]);
-					int y = x[0][1];
-					mav.addObject("xj", x[j]);
-				}
-				System.out.println();
-				mav.addObject("xi", x[i]);
-			}
-			System.out.println(x[3][1]);
-			
-			
-			mav.addObject("numb", numb);
 			mav.addObject("studRatings", studRatingById);
 			mav.addObject("lessons", lessons);
 			mav.addObject("group", group);
