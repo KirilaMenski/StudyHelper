@@ -14,15 +14,16 @@ import by.ansgar.helper.entity.LinkStudentsLessonsRating;
 import by.ansgar.helper.service.LinkStudentsLessonsRatingsService;
 
 @Service
-public class LinkStudentsLessonsRatingsServiceImpl implements LinkStudentsLessonsRatingsService{
-	
+public class LinkStudentsLessonsRatingsServiceImpl
+		implements LinkStudentsLessonsRatingsService {
+
 	@Autowired
 	private LinkStudentsLessonsRatingsDAO linkSLRDAO;
 
 	@Transactional
 	public void addLink(LinkStudentsLessonsRating linkSLR) throws SQLException {
 		linkSLRDAO.addLink(linkSLR);
-		
+
 	}
 
 	@Transactional
@@ -40,7 +41,7 @@ public class LinkStudentsLessonsRatingsServiceImpl implements LinkStudentsLesson
 		ratingById = linkSLRDAO.getLessRatings(id);
 		return ratingById;
 	}
-	
+
 	@Transactional
 	public List<LinkStudentsLessonsRating> getStudRatings(long id)
 			throws SQLException {
@@ -53,7 +54,17 @@ public class LinkStudentsLessonsRatingsServiceImpl implements LinkStudentsLesson
 	public List<LinkStudentsLessonsRating> getRatingsByStudAndLesson(
 			long lessonId, long studentId) throws SQLException {
 		List<LinkStudentsLessonsRating> studentRating = new ArrayList<LinkStudentsLessonsRating>();
-		studentRating = linkSLRDAO.getRatingsByStudAndLesson(lessonId, studentId);
+		studentRating = linkSLRDAO.getRatingsByStudAndLesson(lessonId,
+				studentId);
+		return studentRating;
+	}
+
+	@Transactional
+	public List<LinkStudentsLessonsRating> getRatingsByStudAndLesson(
+			long groupId, long lessonId, long studentId) throws SQLException {
+		List<LinkStudentsLessonsRating> studentRating = new ArrayList<LinkStudentsLessonsRating>();
+		studentRating = linkSLRDAO.getRatingsByStudAndLesson(groupId, lessonId,
+				studentId);
 		return studentRating;
 	}
 
