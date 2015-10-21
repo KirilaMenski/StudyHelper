@@ -41,15 +41,18 @@ public class GroupController {
 					.getStudentsByGroup(group);
 			List<Lessons> lessons = lessonsService.getAllLessons();
 			
+			List<LinkStudentsLessonsRating> studentsRatings = lslrService.getRatingsByStudAndLesson(1, lesson, 1);
+			
 			List<LinkStudentsLessonsRating> studRatingById = new ArrayList<LinkStudentsLessonsRating>();
 			
 			for (int i = 0; i < studentsByGroup.size(); i++) {
-				studRatingById = lslrService.getRatingsByStudAndLesson(
-						lesson, studentsByGroup.get(0).getId());
+				studRatingById.addAll(lslrService.getRatingsByStudAndLesson(
+						lesson, studentsByGroup.get(i).getId()));
 			}
 			
 			
 			mav.addObject("studRatings", studRatingById);
+			mav.addObject("studentsRatings", studentsRatings);
 			mav.addObject("lessons", lessons);
 			mav.addObject("group", group);
 			mav.addObject("studentsByGroup", studentsByGroup);

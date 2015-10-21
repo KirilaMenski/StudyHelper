@@ -21,4 +21,7 @@ public interface LinkStudentsLessonsRatingsDAO {
 	public List<LinkStudentsLessonsRating> getRatingsByStudAndLesson(
 			long lessonId, long studentId) throws SQLException;
 
+	public List<LinkStudentsLessonsRating> getRatingsByStudAndLesson(
+			long groupId, long lessonId, long studentId) throws SQLException;
+
 }

@@ -18,6 +18,9 @@ public class LinkStudentsLessonsRating {
 	@Column(name = "id")
 	private long id;
 	@ManyToOne
+	@JoinColumn(name = "group_id", referencedColumnName = "id")
+	private Group group;
+	@ManyToOne
 	@JoinColumn(name = "stud_id", referencedColumnName = "id")
 	private Students students;
 	@ManyToOne
@@ -31,9 +34,10 @@ public class LinkStudentsLessonsRating {
 
 	}
 
-	public LinkStudentsLessonsRating(long id, Students students,
+	public LinkStudentsLessonsRating(long id, Group group, Students students,
 			Lessons lessons, Ratings rating) {
 		this.id = id;
+		this.group = group;
 		this.students = students;
 		this.lessons = lessons;
 		this.ratings = rating;
@@ -45,6 +49,14 @@ public class LinkStudentsLessonsRating {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+	
+	public Group getGroup() {
+		return group;
+	}
+
+	public void setGroup(Group group) {
+		this.group = group;
 	}
 
 	public Students getStudents() {
