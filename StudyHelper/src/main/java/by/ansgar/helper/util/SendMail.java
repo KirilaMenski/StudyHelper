@@ -12,7 +12,7 @@ import javax.mail.internet.MimeMessage.RecipientType;
 
 public class SendMail {
 	
-	public static boolean senMail(String user, String password, String message,
+	public static boolean sendMail(String user, String password,String title, String message,
 			String [] to) {
 
 		String host = "smtp.gmail.com";
@@ -36,7 +36,7 @@ public class SendMail {
 				mimeMes.addRecipients(RecipientType.TO, toAddress);
 			}
 			
-			mimeMes.setSubject("mail using javamail api");
+			mimeMes.setSubject(title);
 			mimeMes.setText(message);
 			Transport transport = session.getTransport("smtp");
 			transport.connect(host, user, password);

@@ -30,9 +30,10 @@ public class SendMailController {
 		String text = request.getParameter("text");
 		String[] studentsEmail = new String [GroupController.emails.size()];
 			studentsEmail =	GroupController.emails.toArray(studentsEmail);
+		String title = request.getParameter("title");
 
 		// TODO
-		if (SendMail.senMail(user, password, text, studentsEmail)) {
+		if (SendMail.sendMail(user, password, title, text, studentsEmail)) {
 			System.out.println("Successfully");
 		} else {
 			System.out.println("Error");

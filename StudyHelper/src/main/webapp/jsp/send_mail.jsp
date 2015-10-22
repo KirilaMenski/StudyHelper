@@ -20,6 +20,10 @@
 				<td><input type="password" name="password" /></td>
 			</tr>
 			<tr>
+				<td><spring:message code="table.title" /></td>
+				<td><input type="text" name="title" /></td>
+			</tr>
+			<tr>
 				<td colspan="2"><spring:message code="table.text" /></td>
 			</tr>
 			<tr>
