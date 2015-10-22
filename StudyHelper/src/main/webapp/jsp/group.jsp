@@ -52,5 +52,9 @@
 		</c:forEach>
 	
 	</table>
+	<br />
+	<br />
+	<br />
+	<a href="mail_form"><spring:message code="href.send_mail"/></a>
 </body>
 </html>

@@ -24,6 +24,7 @@ import by.ansgar.helper.service.StudentService;
 public class GroupController {
 
 	private static final Logger LOG = Logger.getLogger(GroupController.class);
+	public static List<String> emails = new ArrayList<String>();
 
 	@Autowired
 	private StudentService studentService;
@@ -40,17 +41,20 @@ public class GroupController {
 			List<Students> studentsByGroup = studentService
 					.getStudentsByGroup(group);
 			List<Lessons> lessons = lessonsService.getAllLessons();
-			
-			List<LinkStudentsLessonsRating> studentsRatings = lslrService.getRatingsByStudAndLesson(1, lesson, 1);
-			
+
+			List<LinkStudentsLessonsRating> studentsRatings = lslrService
+					.getRatingsByStudAndLesson(1, lesson, 1);
+
 			List<LinkStudentsLessonsRating> studRatingById = new ArrayList<LinkStudentsLessonsRating>();
-			
+
 			for (int i = 0; i < studentsByGroup.size(); i++) {
 				studRatingById.addAll(lslrService.getRatingsByStudAndLesson(
 						lesson, studentsByGroup.get(i).getId()));
+
+				emails.add(studentsByGroup.get(i).getEmail());
+
 			}
-			
-			
+
 			mav.addObject("studRatings", studRatingById);
 			mav.addObject("studentsRatings", studentsRatings);
 			mav.addObject("lessons", lessons);
@@ -65,10 +69,9 @@ public class GroupController {
 		return mav;
 	}
 
-	
 	@ModelAttribute("ratings")
 	public Ratings ratings() {
 		return new Ratings();
 	}
-	
+
 }
