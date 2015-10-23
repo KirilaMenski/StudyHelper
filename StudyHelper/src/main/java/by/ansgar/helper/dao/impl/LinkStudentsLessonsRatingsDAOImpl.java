@@ -94,19 +94,30 @@ public class LinkStudentsLessonsRatingsDAOImpl
 	public List<LinkStudentsLessonsRating> getRatingsByStudAndLesson(
 			long groupId, long lessonId, long studentId) throws SQLException {
 		List<LinkStudentsLessonsRating> ratings = new ArrayList<LinkStudentsLessonsRating>();
+//		ratings = currentSession()
+//				.createQuery(
+//						"SELECT rat FROM LinkStudentsLessonsRating slr LEFT OUTER JOIN slr.ratings rat "
+//						+ "LEFT OUTER JOIN slr.lessons les LEFT OUTER JOIN slr.students stud "
+//						+ "LEFT OUTER JOIN slr.group gr"
+//								+ " WHERE slr.ratings.id = slr.ratings"
+//								+ " AND slr.group = slr.group.id"
+//								+ " AND slr.group.id = :groupId"
+//								+ " AND slr.lessons = slr.lessons.id"
+//								+ " AND slr.lessons.id = :lessonId"
+//								+ " AND slr.students = slr.students.id"
+//								+ " AND slr.students.id = :studentId")
+//				.setParameter("groupId", groupId)
+//				.setParameter("lessonId", lessonId)
+//				.setParameter("studentId", studentId).list();
 		ratings = currentSession()
 				.createQuery(
-						"SELECT rat FROM LinkStudentsLessonsRating slr LEFT OUTER JOIN slr.ratings rat LEFT OUTER JOIN slr.lessons les LEFT OUTER JOIN slr.students stud LEFT OUTER JOIN slr.group gr"
-								+ " WHERE slr.ratings.id = slr.ratings"
-								+ " AND slr.group = slr.group.id"
-								+ " AND slr.group.id = :groupId"
-								+ " AND slr.lessons = slr.lessons.id"
-								+ " AND slr.lessons.id = :lessonId"
-								+ " AND slr.students = slr.students.id"
-								+ " AND slr.students.id = :studentId")
-				.setParameter("groupId", groupId)
-				.setParameter("lessonId", lessonId)
-				.setParameter("studentId", studentId).list();
+						"SELECT stud, rat FROM LinkStudentsLessonsRating slr "
+						+ "LEFT OUTER JOIN slr.ratings rat "
+						+ "LEFT OUTER JOIN slr.students stud")
+//				.setParameter("groupId", groupId)
+//				.setParameter("lessonId", lessonId)
+//				.setParameter("studentId", studentId)
+				.list();
 		return ratings;
 	}
 

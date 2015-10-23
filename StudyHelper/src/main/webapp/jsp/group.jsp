@@ -43,9 +43,9 @@
 	<table border="1">
 	<c:forEach items="${studentsRatings}" var="studentsRatings">
 			<tr>
-				<th>Тут маецца быць імя і прозвішча студэнта</th>
+				<th>s</th>
 
-					<td><input type="text" value="${studentsRatings.rating}" size="1" /></td>
+					<td><input type="text" value="${studentsRatings.id}" size="1" /></td>
 				<td><input type="text" size="1" /></td>
 			</tr>
 
